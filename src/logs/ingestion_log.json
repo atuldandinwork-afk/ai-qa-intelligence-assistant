@@ -1,0 +1,52 @@
+[
+    {
+        "file": "automation_metrics.csv",
+        "chunks": 1,
+        "ingested_at": "2025-12-26T16:30:28.363918"
+    },
+    {
+        "file": "automation_trend_metrics.csv",
+        "chunks": 2,
+        "ingested_at": "2025-12-26T16:30:28.375159"
+    },
+    {
+        "file": "defects.csv",
+        "chunks": 13,
+        "ingested_at": "2025-12-26T16:30:28.386795"
+    },
+    {
+        "file": "org_project_info.md",
+        "chunks": 2,
+        "ingested_at": "2025-12-26T16:30:28.386795"
+    },
+    {
+        "file": "qa_metrics_formulas.md",
+        "chunks": 2,
+        "ingested_at": "2025-12-26T16:30:28.386795"
+    },
+    {
+        "file": "testing_concepts.md",
+        "chunks": 1,
+        "ingested_at": "2025-12-26T16:30:28.386795"
+    },
+    {
+        "file": "test_cases.csv",
+        "chunks": 45,
+        "ingested_at": "2025-12-26T16:30:28.429766"
+    },
+    {
+        "file": "test_execution_results.csv",
+        "chunks": 60,
+        "ingested_at": "2025-12-26T16:30:28.480861"
+    },
+    {
+        "file": "test_summary.csv",
+        "chunks": 1,
+        "ingested_at": "2025-12-26T16:30:28.480861"
+    },
+    {
+        "file": "untitled.md",
+        "chunks": 0,
+        "ingested_at": "2025-12-26T16:30:28.480861"
+    }
+]

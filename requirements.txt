@@ -1,0 +1,11 @@
+chromadb
+sentence-transformers
+gradio
+pandas
+scikit-learn
+matplotlib
+joblib
+python-multipart
+tqdm
+langchain
+openai
