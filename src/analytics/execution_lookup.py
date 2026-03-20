@@ -48,9 +48,9 @@ def get_execution_by_test_case(test_case_id: str):
 
     return {
         "test_case_id": test_case_id,
-        "total_executions": len(tc_df),
-        "passed": (tc_df["status"] == "Pass").sum(),
-        "failed": (tc_df["status"] == "Fail").sum(),
-        "latest_status": tc_df.sort_values("execution_date").iloc[-1]["status"],
+        "total_executions": int(len(tc_df)),
+        "passed": int((tc_df["status"] == "Pass").sum()),
+        "failed": int((tc_df["status"] == "Fail").sum()),
+        "latest_status": str(tc_df.sort_values("execution_date").iloc[-1]["status"]),
         "linked_defects": linked_defects,
     }

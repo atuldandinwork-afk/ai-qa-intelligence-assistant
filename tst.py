@@ -174,18 +174,18 @@
 # print(analytics_agent(state)["analytics_result"])
 
 
-# from src.agents.risk_agent import risk_agent
+from src.agents.risk_agent import risk_agent
 
-# state = {
-#     "query": "Which modules are risky next sprint?",
-#     "intent": "risk",
-#     "analytics_result": None,
-#     "risk_result": None,
-#     "rag_context": None,
-#     "final_answer": None,
-# }
+state = {
+    "query": "Which modules are risky next sprint?",
+    "intent": "risk",
+    "analytics_result": None,
+    "risk_result": None,
+    "rag_context": None,
+    "final_answer": None,
+}
 
-# # print(risk_agent(state)["risk_result"])
+print(risk_agent(state)["risk_result"])
 
 
 # from src.agents.intent_router import route_intent

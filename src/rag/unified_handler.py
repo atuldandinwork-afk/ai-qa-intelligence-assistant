@@ -16,8 +16,21 @@ from src.analytics.traceability import trace_test_case
 # Optional: risk predictions file
 RISK_FILE = "src/data/predictions/module_risk_predictions.csv"
 
-# Initialize RAG engine ONCE
-_rag_engine = QAQueryEngine()
+# Initialize RAG engine when first needed.  This avoids import-time
+# failures if the langchain-openai integration isn't installed or if the
+# environment (API key, vectorstore) isn't yet configured.
+_rag_engine = None
+
+def _get_rag_engine():
+    global _rag_engine
+    if _rag_engine is None:
+        try:
+            _rag_engine = QAQueryEngine()
+        except ImportError as exc:
+            # log and leave engine as None; callers can degrade gracefully
+            print("WARNING: failed to initialize RAG engine:", exc)
+            _rag_engine = None
+    return _rag_engine
 
 
 def handle_query(query: str) -> dict:
@@ -175,8 +188,17 @@ def handle_query(query: str) -> dict:
     # =================================================
     # 7️⃣ RAG FALLBACK (LAST)
     # =================================================
+    # fallback to RAG if none of the analytic rules matched
+    engine = _get_rag_engine()
+    if engine is None:
+        return {
+            "text": "I don't know.",
+            "analytics": False,
+            "visual": False,
+        }
+
     try:
-        answer = _rag_engine.answer(query)
+        answer = engine.answer(query)
         return {
             "text": answer,
             "analytics": False,

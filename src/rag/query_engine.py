@@ -4,7 +4,13 @@ from dotenv import load_dotenv
 load_dotenv()
 
 from chromadb import PersistentClient
-from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+
+# use the modern langchain init helpers to avoid direct imports of provider-specific
+# packages.  This keeps the code working even if the site-packages structure changes
+# and avoids the earlier ModuleNotFoundError when uvicorn tried to import
+# langchain_openai directly.
+from langchain.chat_models import init_chat_model
+from langchain.embeddings import init_embeddings
 from langchain_core.prompts import PromptTemplate
 
 
@@ -17,9 +23,9 @@ class QAQueryEngine:
         print("Using Chroma persist dir:", persist_dir)
 
         # Embeddings
-        self.embedder = OpenAIEmbeddings(
-            model="text-embedding-3-small"
-        )
+        # `init_embeddings` will load the correct provider integration (openai, etc.)
+        # based on the string. It raises ImportError if the package is missing.
+        self.embedder = init_embeddings("openai:text-embedding-3-small")
 
         # Chroma
         self.client = PersistentClient(path=persist_dir)
@@ -32,10 +38,10 @@ class QAQueryEngine:
         print(f"Using Chroma collection: {collections[0].name}")
 
         # LLM
-        self.llm = ChatOpenAI(
-            model=llm_model,
-            temperature=0.2,
-        )
+        # use init_chat_model which dynamically imports the proper provider
+        # integration.  `model` should be specified with a prefix such as
+        # "openai:gpt-4o-mini" so that the correct provider is inferred.
+        self.llm = init_chat_model(f"openai:{llm_model}", temperature=0.2)
 
         # Prompt
         self.prompt = PromptTemplate(

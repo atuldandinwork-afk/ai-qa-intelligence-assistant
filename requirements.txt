@@ -9,3 +9,9 @@ python-multipart
 tqdm
 langchain
 openai
+fastapi
+uvicorn[standard]
+requests
+pytest
+pytest-asyncio
+langchain-openai
