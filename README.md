@@ -210,7 +210,7 @@ This project is my transition from writing tests to building the intelligence la
 
 **Atul Dandin** — Senior QA Engineer → AI Quality Specialist
 
-[GitHub](https://github.com/atuldandinwork-afk) · [LinkedIn](https://linkedin.com/in/your-profile)
+[GitHub](https://github.com/atuldandinwork-afk) · [LinkedIn](www.linkedin.com/in/atul-dandin-84a0355a)
 
 ---
 
